@@ -1,6 +1,7 @@
 const React = require('react');
 const PropTypes = require('prop-types');
 const api = require('../utils/api');
+const Loading = require('./Loading');
 
 
 function SelectLanguage(props) {
@@ -96,7 +97,7 @@ class Popular extends React.Component {
                 <SelectLanguage selectedLanguage={this.state.selectedLanguage}
                                 onSelect={this.updateLanguage}/>
                 {!this.state.repos
-                    ? <p>Loading</p>
+                    ? <Loading />
                     : <RepoGrid repos={this.state.repos}/>}
             </div>
         )
