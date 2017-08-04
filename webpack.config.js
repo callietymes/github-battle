@@ -11,13 +11,17 @@ module.exports = {
     ],
     output: {
         path: __dirname + '/dist',
-        filename: "index_bundle.js"
+        filename: "index_bundle.js",
+        publicPath: '/'
     },
     module: {
         loaders: [
             {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"},
             { test: /\.css$/, use: [ 'style-loader', 'css-loader' ]}
         ]
+    },
+    devServer: {
+        historyApiFallback: true
     },
     plugins: [
         new HtmlWebpackPlugin({

@@ -1,18 +1,15 @@
 const React = require('react');
-const ReactRouter = require('react-router');
-const transparentBg = require('../styles').transparentBg;
-const Link = ReactRouter.Link;
-const Home = React.createClass({
-   render: function () {
+const Link = require('react-router-dom').Link;
+
+class Home extends React.Component {
+   render () {
        return (
-         <div className="jumbotron col-sm-12 text-center" style={transparentBg}>
+         <div className="home-container">
          <h1>Github Battle</h1>
-             <p className="lead">Face motto</p>
-             <Link to="/playerOne">
-                 <button type="button" className="btn btn-lrg btn-success">Get Started</button>
-             </Link>
+             <Link className="button" to="/battle">Battle</Link>
          </div>
        )
    }
-});
+}
+
 module.exports = Home;
