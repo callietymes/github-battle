@@ -1,19 +1,26 @@
 const axios = require('axios');
 
+
+const id = "YOUR_CLIENT_ID";
+const sec = "YOUR_SECRET_ID";
+const params = "?client_id=" + id + "&client_secret=" + sec;
+
+
+
 function getProfile(username){
-    return axios.get('http://api.github.com.users/' + username)
+    return axios.get('http://api.github.com/users/' + username + params)
         .then((user) => {
         return user.data;
         });
 }
 
 function getRepos(username) {
-    return axios.get('http://api.github.com.users/' + username + '/repos&per_page=100')
+    return axios.get('http://api.github.com/users/' + username + '/repos' + params + '&per_page=100')
 }
 
 function getStarCount(repos) {
     return repos.data.reduce((count, repos) => {
-        return count + repos.startgazers_count;
+        return count + repos.stargazers_count;
     }, 0);
 }
 
@@ -52,8 +59,10 @@ function sortPlayer(players) {
 
 module.exports = {
     battle: function (players) {
-        return promise.all(players.map(getUserData))
-            .then(sortPlayer);
+        return axios.all(players.map(getUserData))
+            .then(sortPlayer).catch((error) => {
+            handleError(error);
+            });
     },
 
     fetchPopularRepos: function (language) {
