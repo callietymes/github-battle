@@ -1,5 +1,6 @@
-var React = require('react');
-var Main = React.createClass({
+import React from 'react';
+
+const Main = React.createClass({
     render: function () {
         return (
             <div className="main-container">
@@ -8,4 +9,4 @@ var Main = React.createClass({
         )
     }
 });
-module.exports = Main;
+export default Main;
